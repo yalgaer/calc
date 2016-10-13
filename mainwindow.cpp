@@ -19,15 +19,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lineEdit->installEventFilter(this);
 }
 
-enum Type {
-    DEFAULT,
-    PLUS,
-    MINUS,
-    SLASH,
-    ASTERISK
+enum MathOperation {
+    ENTER,
+    SUM,
+    SUBSTRUCT,
+    DIVIDE,
+    MULTIPLY
 };
 
-Type type = DEFAULT;
+MathOperation op = ENTER;
 double v1 = 0;
 double v2 = 0;
 double v3 = 0;
@@ -60,84 +60,84 @@ void MainWindow::numericButtonPressed(int number){
     ui->lineEdit->insert(QString::number(number));
 }
 
-void MainWindow::on_pushButton_7_clicked(){
+void MainWindow::on_button1_clicked(){
     numericButtonPressed(1);
 }
 
-void MainWindow::on_pushButton_8_clicked(){
+void MainWindow::on_button2_clicked(){
     numericButtonPressed(2);
 
 }
 
-void MainWindow::on_pushButton_9_clicked(){
+void MainWindow::on_button3_clicked(){
     numericButtonPressed(3);
 }
 
-void MainWindow::on_pushButton_4_clicked(){
+void MainWindow::on_button4_clicked(){
     numericButtonPressed(4);
 }
 
-void MainWindow::on_pushButton_5_clicked(){
+void MainWindow::on_button5_clicked(){
     numericButtonPressed(5);
 }
 
-void MainWindow::on_pushButton_6_clicked(){
+void MainWindow::on_button6_clicked(){
     numericButtonPressed(6);
 }
 
-void MainWindow::on_pushButton_clicked(){
+void MainWindow::on_button7_clicked(){
     numericButtonPressed(7);
 }
 
-void MainWindow::on_pushButton_2_clicked(){
+void MainWindow::on_button8_clicked(){
     numericButtonPressed(8);
 }
 
-void MainWindow::on_pushButton_3_clicked(){
+void MainWindow::on_button9_clicked(){
     numericButtonPressed(9);
 }
 
-void MainWindow::on_pushButton_10_clicked(){
+void MainWindow::on_button0_clicked(){
     numericButtonPressed(0);
 }
 
-void MainWindow::on_pushButton_11_clicked(){
+void MainWindow::on_buttonPeriod_clicked(){
     ui->lineEdit->insert(".");
     cl = false;
 }
 
-void MainWindow::on_pushButton_15_clicked(){
-    type = PLUS;
+void MainWindow::on_buttonPlus_clicked(){
+    op = SUM;
     txtToDouble();
 }
 
-void MainWindow::on_pushButton_14_clicked(){
-    type = MINUS;
+void MainWindow::on_buttonMinus_clicked(){
+    op = SUBSTRUCT;
     txtToDouble();
 }
 
-void MainWindow::on_pushButton_12_clicked(){
-    type = SLASH;
+void MainWindow::on_buttonSlash_clicked(){
+    op = DIVIDE;
     txtToDouble();
 }
 
-void MainWindow::on_pushButton_13_clicked(){
-    type = ASTERISK;
+void MainWindow::on_buttonAsterisk_clicked(){
+    op = MULTIPLY;
     txtToDouble();
 }
 
-void MainWindow::on_pushButton_16_clicked(){
+void MainWindow::on_buttonEqual_clicked(){
     QString txt2 = ui->lineEdit->text();
     v2 = txt2.toDouble();
-    if(type == PLUS){
+    if(op == SUM){
         v3 = v1 + v2;
         clearSetText();
     }
-    if(type == MINUS){
+    if(op == SUBSTRUCT){
         v3 = v1 - v2;
         clearSetText();
     }
-    if(type == SLASH){
+    if(op == DIVIDE){
         if(v2 == 0){
             printf("na 0 delit' nel'zya!");
             ui->lineEdit->clear();
@@ -148,11 +148,11 @@ void MainWindow::on_pushButton_16_clicked(){
             clearSetText();
         }
     }
-    if(type == ASTERISK){
+    if(op == MULTIPLY){
         v3 = v1 * v2;
         clearSetText();
     }
-    type = DEFAULT;
+    op = ENTER;
     cl = true;
 }
 
@@ -180,22 +180,21 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
     
     if(event->key() == Qt::Key_Escape){
         qApp->quit();
-        printf("This is Esc/n");
     }
     if(event->key() == Qt::Key_Plus){
-        type = PLUS;
+        op = SUM;
         txtToDouble();
     }
     if(event->key() == Qt::Key_Minus){
-        type = MINUS;
+        op = SUBSTRUCT;
         txtToDouble();
     }
     if(event->key() == Qt::Key_Slash){
-        type = SLASH;
+        op = DIVIDE;
         txtToDouble();
     }
     if(event->key() == Qt::Key_Asterisk){
-        type = ASTERISK;
+        op = MULTIPLY;
         txtToDouble();
     }
     if(event->key() == Qt::Key_Comma){
@@ -205,15 +204,15 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         QString txt2 = ui->lineEdit->text();
         v2 = txt2.toDouble();
         cl = false;
-        if(type == PLUS){
+        if(op == SUM){
             v3 = v1 + v2;
             clearSetText();
         }
-        if(type == MINUS){
+        if(op == SUBSTRUCT){
             v3 = v1 - v2;
             clearSetText();
         }
-        if(type == SLASH){
+        if(op == DIVIDE){
             if(v2 == 0){
                 printf("na 0 delit' nel'zya!");
                 ui->lineEdit->clear();
@@ -225,11 +224,11 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
                 clearSetText();
             }
         }
-        if(type == ASTERISK){
+        if(op == MULTIPLY){
             v3 = v1 * v2;
             clearSetText();
         }
-        type = DEFAULT;
+        op = ENTER;
         cl = true;
     }
 
@@ -262,5 +261,4 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
         }
     return true;
 }
-
 

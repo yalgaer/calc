@@ -17,38 +17,23 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_7_clicked();
-
-    void on_pushButton_8_clicked();
-
-    void on_pushButton_9_clicked();
-
-    void on_pushButton_4_clicked();
-
-    void on_pushButton_5_clicked();
-
-    void on_pushButton_6_clicked();
-
-    void on_pushButton_clicked();
-
-    void on_pushButton_2_clicked();
-
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_10_clicked();
-
-    void on_pushButton_11_clicked();
-
-    void on_pushButton_15_clicked();
-
-    void on_pushButton_14_clicked();
-
-    void on_pushButton_12_clicked();
-
-    void on_pushButton_13_clicked();
-
-    void on_pushButton_16_clicked();
-
+    void on_button1_clicked();
+    void on_button2_clicked();
+    void on_button3_clicked();
+    void on_button4_clicked();
+    void on_button5_clicked();
+    void on_button6_clicked();
+    void on_button7_clicked();
+    void on_button8_clicked();
+    void on_button9_clicked();
+    void on_button0_clicked();
+    void on_buttonPeriod_clicked();
+    void on_buttonPlus_clicked();
+    void on_buttonMinus_clicked();
+    void on_buttonSlash_clicked();
+    void on_buttonAsterisk_clicked();
+    void on_buttonEqual_clicked();
+    
 protected:
     void keyPressEvent(QKeyEvent *event);
     void txtToDouble();
